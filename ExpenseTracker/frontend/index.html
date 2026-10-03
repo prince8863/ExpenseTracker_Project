@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">₹</div>
+            <div>
+                <h2>Expense Tracker</h2>
+                <p>Manage your money</p>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" data-section="dashboard">⌂ <span>Dashboard</span></button>
+            <button class="nav-item" data-section="add">＋ <span>Add Expense</span></button>
+            <button class="nav-item" data-section="history">▤ <span>Expense History</span></button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Mini Java Project</p>
+            <small>Simple • Fast • Useful</small>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">PERSONAL FINANCE</p>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <button class="primary-btn" id="topAddBtn">＋ Add Expense</button>
+        </header>
+
+        <section id="dashboard" class="section active-section">
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon green">₹</div>
+                    <div>
+                        <p>Total Expenses</p>
+                        <h2 id="totalAmount">₹0.00</h2>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon blue">#</div>
+                    <div>
+                        <p>Transactions</p>
+                        <h2 id="transactionCount">0</h2>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon purple">⌁</div>
+                    <div>
+                        <p>Average Expense</p>
+                        <h2 id="averageAmount">₹0.00</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Recent Expenses</h2>
+                            <p>Your latest transactions</p>
+                        </div>
+                        <button class="text-btn" id="viewAllBtn">View all</button>
+                    </div>
+                    <div id="recentExpenses" class="expense-list"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Categories</h2>
+                            <p>Where your money goes</p>
+                        </div>
+                    </div>
+                    <div id="categoryList" class="category-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="add" class="section">
+            <div class="form-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Add New Expense</h2>
+                        <p>Enter the details of your expense</p>
+                    </div>
+                </div>
+
+                <form id="expenseForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="amount">Amount (₹)</label>
+                            <input type="number" id="amount" min="1" step="0.01" placeholder="e.g. 250" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">Select category</option>
+                                <option>Food</option>
+                                <option>Travel</option>
+                                <option>Shopping</option>
+                                <option>Education</option>
+                                <option>Entertainment</option>
+                                <option>Bills</option>
+                                <option>Health</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" maxlength="60" placeholder="e.g. Lunch with friends" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="primary-btn">＋ Add Expense</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="history" class="section">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Expense History</h2>
+                        <p>All your recorded expenses</p>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenseTable"></tbody>
+                    </table>
+                </div>
+                <div id="emptyHistory" class="empty hidden">No expenses added yet.</div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
